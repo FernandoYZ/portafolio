@@ -1,0 +1,34 @@
+[
+  {
+    "detalle": "Freelance",
+    "rol": "Ingeniero de Sistemas / Full-Stack",
+    "periodo": "2023 - Actualidad",
+    "responsabilidades": [
+      "Diseño y desarrollo de sistemas web escalables con arquitecturas modulares.",
+      "Implementación de microservicios en Go con gRPC y PostgreSQL.",
+      "Configuración de pipelines CI/CD con GitHub Actions.",
+      "Despliegue de aplicaciones en VPS usando Docker y Nginx.",
+      "Optimización de rendimiento en backend y frontend.",
+      "Diseño de bases de datos relacionales con auditoría y triggers."
+    ],
+    "destacados": [
+      "Reducción del tiempo de despliegue de 20 min → 2 min con CI/CD.",
+      "Mejora del rendimiento del backend en 45% utilizando caché Redis.",
+      "Diseño de sistemas para pequeñas empresas que ahora trabajan 100% digital."
+    ]
+  },
+  {
+    "detalle": "Proyectos Personales",
+    "rol": "Arquitecto de Software",
+    "periodo": "2024 - Actualidad",
+    "responsabilidades": [
+      "Diseño arquitectónico (C4, despliegue, secuencia).",
+      "Implementación de API Gateway y sistemas distribuidos.",
+      "Integración de servicios externos (pasarelas, APIs)."
+    ],
+    "destacados": [
+      "Implementación exitosa de modelos hexagonales y driven adapters.",
+      "Manejo de mensajería con RabbitMQ para tareas asíncronas."
+    ]
+  }
+]

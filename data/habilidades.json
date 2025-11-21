@@ -1,0 +1,49 @@
+{
+  "backend": [
+    "Go",
+    "Node.js",
+    "Bun",
+    "gRPC",
+    "REST",
+    "PostgreSQL",
+    "Redis",
+    "ORMs (Prisma, GORM)"
+  ],
+  "frontend": [
+    "JavaScript",
+    "TypeScript",
+    "Astro",
+    "Svelte",
+    "Vue",
+    "React",
+    "TailwindCSS"
+  ],
+  "devops": [
+    "Docker",
+    "Docker Compose",
+    "Nginx",
+    "CI/CD (GitHub Actions)",
+    "Monitoreo básico (Prometheus/Grafana)",
+    "Linux (Ubuntu/Debian)"
+  ],
+  "arquitectura": [
+    "C4 Modeling",
+    "Microservicios",
+    "Clean Architecture",
+    "Diseño de APIs",
+    "Sistemas distribuidos"
+  ],
+  "database": [
+    "Normalización",
+    "Índices y optimización de queries",
+    "Triggers y funciones",
+    "Diseño ER",
+    "Vistas materializadas"
+  ],
+  "blandas": [
+    "Resolución de problemas",
+    "Pensamiento sistemático",
+    "Comunicación técnica",
+    "Documentación clara"
+  ]
+}

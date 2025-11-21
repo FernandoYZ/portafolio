@@ -1,0 +1,9 @@
+{
+  "lenguajes": ["Go", "TypeScript", "JavaScript", "SQL"],
+  "frameworks": ["Astro", "SvelteKit", "Vue", "React"],
+  "backendTech": ["gRPC", "REST", "Node.js", "Bun"],
+  "databases": ["PostgreSQL", "Redis", "SQL Server", "MySQL"],
+  "devops": ["Docker", "Nginx", "GitHub Actions"],
+  "tools": ["Git", "VSCode", "Linux", "Figma"],
+  "cloud": ["VPS", "Railway", "Vercel (solo frontend)", "Render"]
+}
