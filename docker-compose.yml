@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: portafolio_app
     ports:
       - "3100:80"
     restart: unless-stopped
