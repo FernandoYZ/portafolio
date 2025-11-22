@@ -1,0 +1,207 @@
+{
+  "id": "kiosco",
+  "title": "Kiosco — Sistema de Control de Consumo Escolar",
+  "description": "Gestiona consumos, pagos y deudas de estudiantes en kioscos escolares con este sistema web SSR rápido y eficiente en Go.",
+  "year": 2025,
+  "stack": [
+    "Go",
+    "PostgreSQL",
+    "TailwindCSS (CLI)",
+    "HTML Templates"
+  ],
+  "tags": [
+    "backend",
+    "fullstack",
+    "systems"
+  ],
+  "cover": "/images/projects/kiosco/cover.webp",
+  "view": "projects/kiosco",
+  "overview": {
+    "short_description": "Kiosco permite llevar el control semanal de consumos por estudiante, registrar pagos, calcular deudas en tiempo real y administrar días no laborables. Es un sistema usado por kioscos escolares que necesitan rapidez, estabilidad y cálculos precisos sin depender de frameworks o frontends complejos.",
+    "features": [
+      "Vista semanal completa con consumos por estudiante (semana actual o seleccionada).",
+      "Filtro por grado (Primaria / Secundaria).",
+      "Gestión de consumos: agregar, modificar y visualizar productos consumidos por día.",
+      "Gestión de pagos con historial detallado.",
+      "Cálculo automático de deuda: Deuda anterior, Subtotal semanal, Pagos y descuentos, Deuda total en tiempo real.",
+      "Edición diaria optimizada para ventas rápidas.",
+      "Configuración de días no laborables.",
+      "Interfaz responsiva con TailwindCSS (CLI).",
+      "SSR puro usando .tmpl (sin JS frameworks)."
+    ]
+  },
+  "screenshots": [
+    {
+      "title": "Vista Principal — Control Semanal",
+      "image": "/images/projects/kiosco/captura_index.png"
+    },
+    {
+      "title": "Edición de Consumos Diarios",
+      "image": "/images/projects/kiosco/captura_editar_producto.png"
+    }
+  ],
+  "architecture": {
+    "style": "MVC-like",
+    "description": "Arquitectura basada en separación por capas, siguiendo un estilo MVC-like, con SSR usando plantillas HTML compiladas.",
+    "structure": {
+      "cmd/kiosco/main.go": "entrypoint",
+      "internal": {
+        "config": "Variables de entorno",
+        "db": "Pool PostgreSQL",
+        "models": "Modelos Go",
+        "repositories": "Queries SQL optimizadas",
+        "services": "Lógica de negocio (cálculo de deuda)",
+        "controllers": "Manejo de rutas HTTP + templates",
+        "router": "Enrutamiento HTTP",
+        "middleware": "Logger y recuperación de panics",
+        "views": "Plantillas .tmpl (SSR)",
+        "utils": "Funciones auxiliares"
+      }
+    }
+  },
+  "design_decisions": [
+    "Go stdlib (sin frameworks) para máximo rendimiento.",
+    "PostgreSQL optimizado con más de 10 índices.",
+    "Templates HTML compilados una sola vez.",
+    "Sin ORM: SQL puro para máximo control.",
+    "Batch queries para cálculos semanales."
+  ],
+  "problem": {
+    "title": "Problema",
+    "description": "Los kioscos escolares suelen gestionar consumos y pagos en cuadernos o Excel, lo que genera: Cálculos manuales propensos a errores, Falta de visibilidad semanal o histórica, Procesos lentos durante el horario de recreo, Dificultad para gestionar días no laborables, Problemas para calcular deudas de semanas anteriores."
+  },
+  "solution": {
+    "title": "Solución Propuesta",
+    "description": "Kiosco automatiza todo el flujo:",
+    "details": [
+      "Calcula deudas semanal/anual automáticamente.",
+      "Registra en segundos consumos o pagos.",
+      "Maneja filtros por grado/alumno/fecha.",
+      "Optimiza cálculos de múltiples estudiantes mediante batch SQL.",
+      "UI simple diseñada estrictamente para velocidad de venta.",
+      "Implementación robusta de errores y logging."
+    ]
+  },
+  "technologies": {
+    "backend": "Go 1.24.6 (stdlib puro)",
+    "database": "PostgreSQL 14+",
+    "frontend_ssr": "HTML5 + TailwindCSS CLI",
+    "infrastructure": "Dockerfile oficial, variables de entorno, build cross-platform"
+  },
+  "quick_start": {
+    "prerequisites": [
+      "Go 1.24.6",
+      "PostgreSQL 14+",
+      "Git",
+      "Tailwind CLI (opcional si recompilas CSS)"
+    ],
+    "steps": [
+      {
+        "title": "Clonar el Repositorio",
+        "commands": [
+          "git clone https://github.com/FernandoYZ/kiosco.git",
+          "cd kiosco"
+        ]
+      },
+      {
+        "title": "Configurar Base de Datos",
+        "commands": [
+          "CREATE DATABASE Kiosco;",
+          "Ejecutar db.pgsql completo"
+        ]
+      },
+      {
+        "title": "Configurar Variables y Ejecutar",
+        "platforms": [
+          {
+            "platform": "Windows",
+            "commands": [
+              "copy run.example.bat run.bat",
+              "notepad run.bat",
+              ".\\run.bat"
+            ]
+          },
+          {
+            "platform": "Linux / macOS",
+            "commands": [
+              "cp run.example.sh run.sh",
+              "nano run.sh",
+              "chmod +x run.sh",
+              "./run.sh"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Compilar (Opcional)",
+        "commands": [
+          "go build -o kiosco ./cmd/kiosco",
+          "./kiosco"
+        ]
+      },
+      {
+        "title": "Acceder al Sistema",
+        "url": "http://localhost:3200"
+      }
+    ]
+  },
+  "project_structure": {
+    "kiosco": [
+      "cmd/kiosco/main.go",
+      "internal/",
+      "static/",
+      "assets/",
+      "db.pgsql",
+      "Dockerfile",
+      "README.md"
+    ]
+  },
+  "routes": [
+    { "method": "GET", "path": "/", "description": "Vista semanal (principal)" },
+    { "method": "POST", "path": "/registrar-consumo", "description": "Registrar consumo" },
+    { "method": "POST", "path": "/registrar-pago", "description": "Registrar pago" },
+    { "method": "GET", "path": "/editar-consumos", "description": "Editar productos del día" },
+    { "method": "POST", "path": "/guardar-consumos-dia", "description": "Guardar edición del día" },
+    { "method": "GET", "path": "/editar-pagos", "description": "Gestión de pagos" },
+    { "method": "POST", "path": "/eliminar-pago", "description": "Eliminar pago" }
+  ],
+  "performance_optimizations": {
+    "database": [
+      "10+ índices optimizados",
+      "Índices compuestos: IdEstudiante + Fecha",
+      "Índices parciales: Estudiantes(EstaActivo=true)",
+      "Batch queries para semanas completas",
+      "Pool de conexiones reducido para evitar saturación"
+    ],
+    "backend": [
+      "Sin frameworks → overhead mínimo",
+      "Templates compilados una vez al inicio",
+      "Iteraciones con Pre-alloc en slices/maps",
+      "Prepared statements persistentes"
+    ],
+    "performance_metrics": {
+      "weekly_queries_improvement": "50-70%",
+      "response_time": {
+        "local_db": "<100 ms con 200-500 estudiantes",
+        "remote_db": "200-400 ms"
+      }
+    }
+  },
+  "deployment": {
+    "commands": [
+      "docker build -t kiosco .",
+      "docker run -p 3200:3200 -e DB_USER=postgres -e DB_PASSWORD=XXXX -e DB_HOST=host kiosco"
+    ]
+  },
+  "lessons_learned": [
+    "El SQL puro con índices adecuados supera ampliamente cualquier ORM.",
+    "El SSR con Go es extremadamente rápido y estable.",
+    "Batch queries reducen drásticamente el tiempo de cálculo semanal.",
+    "La simplicidad del stack facilita debugging y despliegue."
+  ],
+  "repository_contact": {
+    "github": "https://github.com/FernandoYZ/kiosco",
+    "author": "Fernando YZ",
+    "year": 2025
+  }
+}
