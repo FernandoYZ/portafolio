@@ -8,4 +8,4 @@ COPY . .
 RUN bun run build
 
 EXPOSE 3100
-CMD ["bun", "run", "preview", "--port", "3100"]
+CMD ["bun", "run", "preview", "--port", "3100", "--host", "0.0.0.0"]
