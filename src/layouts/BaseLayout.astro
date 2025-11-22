@@ -1,17 +1,93 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
-const { titulo } = Astro.props; 
+import Header from "@/components/partials/Header.astro";
+import Footer from "@/components/partials/Footer.astro";
+
+interface Props {
+  titulo: string;
+  descripcion?: string;
+  imagen?: string;
+  canonical?: string;
+}
+
+const {
+  titulo,
+  descripcion = "Ingeniero de Sistemas especializado en diseño de arquitecturas escalables, desarrollo backend con Go, y DevOps.",
+  imagen = "/og-image.png",
+  canonical
+} = Astro.props;
+
+const siteUrl = "https://fernandoyz.com";
+const currentUrl = canonical || Astro.url.pathname;
 ---
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{ titulo }</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
 
+    <!-- SEO Básico -->
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={`${siteUrl}${currentUrl}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}${currentUrl}`} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:image" content={`${siteUrl}${imagen}`} />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${siteUrl}${currentUrl}`} />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={`${siteUrl}${imagen}`} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Fernando Yovera",
+        "jobTitle": "Ingeniero de Sistemas",
+        "url": siteUrl,
+        "sameAs": [
+          "https://github.com/FernandoYZ",
+          "https://www.linkedin.com/in/fernando-yovera-zavala-066904283/",
+          "https://x.com/YoveraZavala"
+        ]
+      })}
+    </script>
+
+    <!-- Astro View Transitions -->
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen flex flex-col bg-bg-primary relative">
+    <!-- Background effects -->
+    <div class="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <!-- Ambient orbs -->
+      <div class="ambient-orb ambient-orb-1"></div>
+      <div class="ambient-orb ambient-orb-2"></div>
+      <div class="ambient-orb ambient-orb-3"></div>
+
+      <!-- Subtle grid -->
+      <div class="absolute inset-0 bg-grid"></div>
+
+      <!-- Noise texture -->
+      <div class="absolute inset-0 bg-noise"></div>
+    </div>
+
+    <Header />
+    <main class="flex-1 relative z-10">
+      <slot />
+    </main>
+    <Footer class="relative z-10" />
+  </body>
+</html>
