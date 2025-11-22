@@ -1,9 +1,22 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import "@/styles/global.css";
-const titulo:string = 'Mi Portafolio';
----
+import Hero from "@/components/sections/Hero.astro";
+import StatStrip from "@/components/sections/StatStrip.astro";
+import About from "@/components/sections/About.astro";
+import Experience from "@/components/sections/Experience.astro";
+import Skills from "@/components/sections/Skills.astro";
+import Projects from "@/components/sections/Projects.astro";
+import Contact from "@/components/sections/Contact.astro";
 
-<BaseLayout titulo={titulo}>
-<h1 class="text-3xl font-bold">Bienvenido</h1>
+const titulo = "Fernando Yovera | Ingeniero de Sistemas";
+const descripcion = "Portafolio profesional de Fernando Yovera. Ingeniero de Sistemas especializado en arquitecturas escalables, desarrollo backend con Go, y DevOps.";
+---
+<BaseLayout titulo={titulo} descripcion={descripcion}>
+  <Hero />
+  <Experience />
+  <Projects />
+  <StatStrip />
+  <About />
+  <Skills />
+  <Contact />
 </BaseLayout>
