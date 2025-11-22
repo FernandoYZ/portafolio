@@ -33,17 +33,11 @@
   /* Bordes */
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-strong: rgba(255, 255, 255, 0.2);
-
-  /* Glassmorphism */
-  --glass-bg: rgba(28, 28, 30, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 /* Base styles */
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -52,17 +46,6 @@ body {
   color: var(--color-text-primary);
   line-height: 1.5;
   letter-spacing: -0.01em;
-}
-
-/* View Transitions */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.25s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scrollbar minimalista */
@@ -79,10 +62,6 @@ body {
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gray-2);
-}
-
 /* Selection */
 ::selection {
   background-color: rgba(255, 255, 255, 0.2);
@@ -96,34 +75,15 @@ body {
   border-radius: 4px;
 }
 
-/* Glassmorphism utilities */
+/* Glass utilities - versión ligera sin blur */
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid var(--glass-border);
+  background: rgba(28, 28, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-light {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-}
-
-/* Smooth transitions */
-* {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Card hover effect */
-.card-hover {
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Text gradient */
@@ -134,82 +94,8 @@ body {
   background-clip: text;
 }
 
-/* Subtle glow */
-.glow {
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
-}
-
 /* iOS-style separator */
 .separator {
   height: 1px;
   background: linear-gradient(to right, transparent, var(--color-border), transparent);
-}
-
-/* Background Effects - Apple Style */
-
-/* Ambient light orbs */
-.ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  will-change: transform;
-  animation: float 25s ease-in-out infinite;
-}
-
-.ambient-orb-1 {
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(56, 56, 80, 0.5) 0%, transparent 60%);
-  top: -300px;
-  right: -200px;
-  animation-delay: 0s;
-}
-
-.ambient-orb-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(40, 40, 70, 0.4) 0%, transparent 60%);
-  bottom: 10%;
-  left: -200px;
-  animation-delay: -8s;
-}
-
-.ambient-orb-3 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(50, 50, 75, 0.35) 0%, transparent 60%);
-  top: 40%;
-  right: -150px;
-  animation-delay: -16s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -40px) scale(1.05);
-  }
-  66% {
-    transform: translate(-20px, 30px) scale(0.95);
-  }
-}
-
-/* Subtle dot grid */
-.bg-grid {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
-  background-size: 32px 32px;
-}
-
-/* Noise texture for depth */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .ambient-orb {
-    animation: none;
-  }
 }
