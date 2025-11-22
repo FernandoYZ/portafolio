@@ -62,7 +62,7 @@ const highlightSkills = ["Go", "TypeScript", "PostgreSQL", "Docker", "Nginx", "C
       {categories.map((category) => {
         const skills = habilidades[category.key as keyof typeof habilidades] || [];
         return (
-          <div class="group p-6 rounded-2xl bg-gray-9 border border-gray-6 hover:border-gray-5 transition-all duration-300">
+          <div class="group p-6 rounded-2xl bg-gray-9 border border-gray-6 hover:border-gray-5">
             <!-- Category header -->
             <div class="flex items-start gap-4 mb-5">
               <div class="w-10 h-10 rounded-xl bg-bg-tertiary/50 flex items-center justify-center shrink-0">
@@ -102,10 +102,10 @@ const highlightSkills = ["Go", "TypeScript", "PostgreSQL", "Docker", "Nginx", "C
             <div class="flex flex-wrap gap-1.5">
               {skills.map((skill: string) => (
                 <span class:list={[
-                  "px-2.5 py-1 text-xs rounded-lg transition-colors duration-200",
+                  "px-2.5 py-1 text-xs rounded-lg",
                   highlightSkills.includes(skill)
                     ? "text-text-primary bg-bg-tertiary"
-                    : "text-text-muted bg-bg-tertiary/50 hover:bg-bg-tertiary hover:text-text-secondary"
+                    : "text-text-muted bg-bg-tertiary/50"
                 ]}>
                   {skill}
                 </span>

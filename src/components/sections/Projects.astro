@@ -1,5 +1,4 @@
 ---
-import { fade } from "astro:transitions";
 import ProjectCard from "@/components/ui/ProjectCard.astro";
 
 // Importar proyectos desde archivos JSON
@@ -21,7 +20,7 @@ const projects = Object.values(projectFiles).map((file) => file.default);
 // Ordenar por año descendente
 projects.sort((a, b) => b.year - a.year);
 ---
-<section id="projects" class="py-24 px-6 pb-32 md:pb-24" transition:animate={fade({ duration: '0.3s' })}>
+<section id="projects" class="py-24 px-6 pb-32 md:pb-24">
   <div class="max-w-4xl mx-auto">
     <!-- Section header -->
     <div class="max-w-2xl mb-16">

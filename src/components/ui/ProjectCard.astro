@@ -17,12 +17,11 @@ const { id, title, description, year, stack, tags, cover, view, featured = false
   <a
     href={`/${view}`}
     class:list={[
-      "block h-full rounded-2xl overflow-hidden transition-all duration-500",
+      "block h-full rounded-2xl overflow-hidden",
       "bg-bg-secondary border border-border",
-      "hover:border-border-strong hover:shadow-2xl hover:shadow-black/20",
+      "hover:border-border-strong",
       featured ? "lg:flex lg:items-stretch" : ""
     ]}
-    transition:name={`project-${id}`}
   >
     <!-- Cover Image -->
     <div class:list={[
@@ -33,7 +32,7 @@ const { id, title, description, year, stack, tags, cover, view, featured = false
         <img
           src={cover}
           alt={`Preview de ${title}`}
-          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+          class="w-full h-full object-cover"
           loading="lazy"
         />
       ) : (
@@ -64,7 +63,7 @@ const { id, title, description, year, stack, tags, cover, view, featured = false
 
       <!-- Title -->
       <h3 class:list={[
-        "font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-colors duration-300",
+        "font-medium text-text-primary mb-3",
         featured ? "text-2xl lg:text-3xl" : "text-xl"
       ]}>
         {title}
@@ -92,12 +91,6 @@ const { id, title, description, year, stack, tags, cover, view, featured = false
         )}
       </div>
 
-      <!-- Arrow indicator -->
-      <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-        </svg>
-      </div>
     </div>
   </a>
 </article>
