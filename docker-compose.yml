@@ -3,7 +3,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: portafolio_build
-    restart: "no"
-    volumes:
-      - ./dist:/dist
+    container_name: portafolio_app
+    ports:
+      - "3100:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
