@@ -1,0 +1,138 @@
+---
+import habilidades from "@/data/habilidades.json";
+
+const categories = [
+  {
+    key: "backend",
+    label: "Backend",
+    description: "Servicios y APIs",
+    icon: "server"
+  },
+  {
+    key: "frontend",
+    label: "Frontend",
+    description: "Interfaces de usuario",
+    icon: "layout"
+  },
+  {
+    key: "devops",
+    label: "DevOps",
+    description: "Infraestructura y CI/CD",
+    icon: "cloud"
+  },
+  {
+    key: "arquitectura",
+    label: "Arquitectura",
+    description: "Diseño de sistemas",
+    icon: "blocks"
+  },
+  {
+    key: "database",
+    label: "Bases de Datos",
+    description: "Modelado y optimización",
+    icon: "database"
+  },
+];
+
+// Highlight skills (principales)
+const highlightSkills = ["Go", "TypeScript", "PostgreSQL", "Docker", "Nginx", "Clean Architecture"];
+---
+<section id="skills" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <!-- Section header -->
+    <p class="text-xs text-text-muted uppercase tracking-widest mb-4">Skills</p>
+    <h2 class="text-3xl sm:text-4xl font-semibold text-text-primary mb-6 tracking-tight">
+      Stack técnico
+    </h2>
+    <p class="text-lg text-text-tertiary mb-16 max-w-2xl">
+      Tecnologías que utilizo para diseñar e implementar soluciones de software.
+    </p>
+
+    <!-- Highlighted skills -->
+    <div class="flex flex-wrap gap-3 mb-16">
+      {highlightSkills.map((skill) => (
+        <span class="px-4 py-2 text-sm text-text-primary bg-bg-secondary rounded-xl border border-border-strong">
+          {skill}
+        </span>
+      ))}
+    </div>
+
+    <!-- Skills grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {categories.map((category) => {
+        const skills = habilidades[category.key as keyof typeof habilidades] || [];
+        return (
+          <div class="group p-6 rounded-2xl bg-gray-9 border border-gray-6 hover:border-gray-5 transition-all duration-300">
+            <!-- Category header -->
+            <div class="flex items-start gap-4 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-bg-tertiary/50 flex items-center justify-center shrink-0">
+                {category.icon === "server" && (
+                  <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" />
+                  </svg>
+                )}
+                {category.icon === "layout" && (
+                  <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
+                  </svg>
+                )}
+                {category.icon === "cloud" && (
+                  <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+                  </svg>
+                )}
+                {category.icon === "blocks" && (
+                  <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                  </svg>
+                )}
+                {category.icon === "database" && (
+                  <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                  </svg>
+                )}
+              </div>
+              <div>
+                <h3 class="text-base font-medium text-text-primary">{category.label}</h3>
+                <p class="text-xs text-text-muted">{category.description}</p>
+              </div>
+            </div>
+
+            <!-- Skills list -->
+            <div class="flex flex-wrap gap-1.5">
+              {skills.map((skill: string) => (
+                <span class:list={[
+                  "px-2.5 py-1 text-xs rounded-lg transition-colors duration-200",
+                  highlightSkills.includes(skill)
+                    ? "text-text-primary bg-bg-tertiary"
+                    : "text-text-muted bg-bg-tertiary/50 hover:bg-bg-tertiary hover:text-text-secondary"
+                ]}>
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Soft skills - más sutil -->
+    {habilidades.blandas && (
+      <div class="mt-8 p-6 rounded-2xl border border-border">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          <span class="text-xs text-text-muted uppercase tracking-widest shrink-0">También</span>
+          <div class="flex flex-wrap gap-3">
+            {habilidades.blandas.map((skill: string) => (
+              <span class="text-sm text-text-tertiary">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- Separator -->
+<div class="separator max-w-4xl mx-auto"></div>

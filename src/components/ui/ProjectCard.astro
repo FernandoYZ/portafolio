@@ -1,0 +1,103 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  year: number;
+  stack: string[];
+  tags: string[];
+  cover?: string;
+  view: string;
+  featured?: boolean;
+}
+
+const { id, title, description, year, stack, tags, cover, view, featured = false } = Astro.props;
+---
+<article class="group relative h-full">
+  <a
+    href={`/${view}`}
+    class:list={[
+      "block h-full rounded-2xl overflow-hidden transition-all duration-500",
+      "bg-bg-secondary border border-border",
+      "hover:border-border-strong hover:shadow-2xl hover:shadow-black/20",
+      featured ? "lg:flex lg:items-stretch" : ""
+    ]}
+    transition:name={`project-${id}`}
+  >
+    <!-- Cover Image -->
+    <div class:list={[
+      "relative overflow-hidden bg-bg-tertiary",
+      featured ? "lg:w-1/2 aspect-16/10 lg:aspect-auto" : "aspect-16/10"
+    ]}>
+      {cover ? (
+        <img
+          src={cover}
+          alt={`Preview de ${title}`}
+          class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-full h-full flex items-center justify-center">
+          <svg class="w-16 h-16 text-text-muted/30" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="0.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+          </svg>
+        </div>
+      )}
+
+      <!-- Gradient overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-bg-secondary via-transparent to-transparent opacity-60"></div>
+    </div>
+
+    <!-- Content -->
+    <div class:list={[
+      "p-6 flex flex-col",
+      featured ? "lg:w-1/2 lg:p-8 lg:justify-center" : ""
+    ]}>
+      <!-- Year & Tags -->
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-xs text-text-muted">{year}</span>
+        <span class="w-1 h-1 rounded-full bg-text-muted/50"></span>
+        {tags.slice(0, 2).map((tag) => (
+          <span class="text-xs text-text-muted capitalize">{tag}</span>
+        ))}
+      </div>
+
+      <!-- Title -->
+      <h3 class:list={[
+        "font-medium text-text-primary mb-3 group-hover:text-text-secondary transition-colors duration-300",
+        featured ? "text-2xl lg:text-3xl" : "text-xl"
+      ]}>
+        {title}
+      </h3>
+
+      <!-- Description -->
+      <p class:list={[
+        "text-text-muted mb-6 leading-relaxed",
+        featured ? "text-base lg:text-lg line-clamp-3" : "text-sm line-clamp-2"
+      ]}>
+        {description}
+      </p>
+
+      <!-- Stack -->
+      <div class="flex flex-wrap gap-2 mt-auto">
+        {stack.slice(0, featured ? 6 : 4).map((tech) => (
+          <span class="px-2.5 py-1 text-xs text-text-tertiary bg-bg-tertiary/50 rounded-lg">
+            {tech}
+          </span>
+        ))}
+        {stack.length > (featured ? 6 : 4) && (
+          <span class="px-2.5 py-1 text-xs text-text-muted">
+            +{stack.length - (featured ? 6 : 4)}
+          </span>
+        )}
+      </div>
+
+      <!-- Arrow indicator -->
+      <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+        </svg>
+      </div>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,56 @@
+---
+import { fade } from "astro:transitions";
+import ProjectCard from "@/components/ui/ProjectCard.astro";
+
+// Importar proyectos desde archivos JSON
+const projectFiles = import.meta.glob<{
+  default: {
+    id: string;
+    title: string;
+    description: string;
+    year: number;
+    stack: string[];
+    tags: string[];
+    cover?: string;
+    view: string;
+  };
+}>("../../data/projects/*.json", { eager: true });
+
+const projects = Object.values(projectFiles).map((file) => file.default);
+
+// Ordenar por año descendente
+projects.sort((a, b) => b.year - a.year);
+---
+<section id="projects" class="py-24 px-6 pb-32 md:pb-24" transition:animate={fade({ duration: '0.3s' })}>
+  <div class="max-w-4xl mx-auto">
+    <!-- Section header -->
+    <div class="max-w-2xl mb-16">
+      <p class="text-xs text-text-muted uppercase tracking-widest mb-4">Proyectos</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold text-text-primary mb-6 tracking-tight">
+        Trabajo seleccionado
+      </h2>
+      <p class="text-lg text-text-tertiary leading-relaxed">
+        Proyectos que demuestran mi enfoque en arquitectura, rendimiento y buenas prácticas de ingeniería.
+      </p>
+    </div>
+
+    <!-- Projects Grid - Bento style -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {projects.map((project, index) => (
+        <div class={index === 0 ? "lg:col-span-2" : ""}>
+          <ProjectCard {...project} featured={index === 0} />
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty state -->
+    {projects.length === 0 && (
+      <div class="text-center py-24">
+        <p class="text-text-muted">Próximamente...</p>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- Separator -->
+<div class="separator max-w-4xl mx-auto"></div>
